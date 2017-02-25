@@ -1,0 +1,112 @@
+<?php
+if(isset($sMsg) && ($sMsg != "")){
+	echo $sMsg;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Basic Page Needs -->
+<meta charset="utf-8" />
+<title>Toastmasters D61 Fall Conference</title>
+<!-- Metas -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="www.ideabytes.com" />
+<!-- Mobile Specific Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Stylesheets -->
+<link rel="stylesheet" href="layouts/css/bootstrap.min.css" />
+<link rel="stylesheet" href="layouts/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="layouts/css/style.css" />
+<link rel="stylesheet" href="layouts/css/fonts.css" />
+<link rel="stylesheet" href="layouts/css/fontello.css" />
+<!--<link rel="stylesheet" href="css/jquery.countdown.css" />
+<link rel="stylesheet" href="css/jquery.validationengine.css" />
+<link rel="stylesheet" href="css/flexslider.css">-->
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+<!-- Favicon and touch icons -->
+<link rel="apple-touch-icon" href="layouts/images/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="layouts/images/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="layouts/images/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="layouts/images/touch-icon-ipad-retina.png">
+<link rel="shortcut icon" href="layouts/images/favicon.png">
+</head><body style="background-color: #4C5D67;">
+	
+    
+<style>
+.home-float{
+	width: 62px;
+	top: 182px;
+	height: 22px;
+	padding-top: 8px;
+}
+.reg-float {
+	width: 62px;
+	top: 236px;
+	height: 20px;
+	padding-top: 7px;
+}
+.btn.btn-danger {
+	background-color: #48A3A6;
+}
+.btn.btn-danger:hover {
+	background-color: #2C6769;
+}
+	
+</style>
+<section id="contact" class="white">
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="module-header contact-header">
+					<h4></h4>
+				</div>
+			</div>
+			<!-- end span12 -->
+			<div class="span12 hero-unit text-center white">
+				<link rel="stylesheet" href="css/bootstrap.min.css" />
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" >
+
+							User Name : <input type="text" class="form-control" name = "uname" /><br />
+
+							Password &nbsp;: &nbsp;<input type="password" class="form-control" name = "pass" /><br />
+							<input type="hidden" name="action" id="action" value="login">
+							<input type = "submit" name = "enter" value = "Login" />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span12" style="margin: 50px 0px 0px -2px;">
+			</div>
+	  
+	</div>
+	<!-- end container -->
+</section>
+<!-- end contact -->
+<footer style= "height: 40%;margin-top:13%;" id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="span3 text-center"> 
+		<!--<img src="images/logo.png" alt="Eventify"> <p> Logo of the Event <p>-->
+	  </div>
+	  <div class="span4 offset5 text-center">Developed by <a href="http://www.ideabytes.com/" target="_" blank>Ideabytes</a> </div>
+	</div>
+      <!-- end span12 --> 
+    <!-- end row --> 
+  </div>
+  <!-- end container --> 
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+ <header>Registrations</header>
+<form action="registrations.php" method="GET">
+<input type="text" name="s" id="s" value="<?php echo @$s; ?>">
+<input type="submit" name="submitbtn" id="submitbtn" value="search">
+</form>
+                       
+                        <table class="responsive">
+                            <tbody>
+                                <tr class="blueh">
+                                    <th>S.No</th>
+                                    <th>Clinet Name</th>
+                                    <th>Conference</th>
+									<th>Club</th>
+									<th>Product Title</th>
+                                    <th>Product Price</th>
+									<th>Meal Lunch</th>
+									<th>Meal Banquet</th>
+                                </tr>                            
+                                <?php 
+                                $sn = 1;
+                                if($count>0){
+								$showKeyCount = 1;
+                                foreach($aRegDeatials as $data){
+								//$clubName = ($data['Client_Club_Number'] != "") ? $oRegDeatials->getClubName($data['Client_Club_Number']): "guest";
+								$clubName = ($data['Club_Name'] != "") ? $data['Club_Name']: "guest";
+                                echo "<tr>";
+                                echo "<td>".($sn+$start_limit)."</td>
+								      <td>".$data['Client_First_Name']. " " .$data['Client_Last_Name'] . "</td>
+									  <td>".$data['Conference_Title_EN']."</td>
+									  <td>".$clubName."</td>
+									  <td>".$data['Product_Title_En']."</td>
+									  <td>".$data['Product_Price']."</td>
+									  <td>".$oRegDeatials->getMeals($data['Registration_Meal_Lunch_Identifier'])."</td>
+									  <td>".$oRegDeatials->getMeals($data['Registration_Meal_Banquet_Identifier'])."</td>";
+                                $sn++;
+                                
+                                if(ceil($count%ROW_PER_PAGE) == 1){
+                                $page =$page-1;
+                                }
+								}
+                                ?>
+                            </tr>
+                            <?php
+								$showKeyCount++;
+                            
+                            }else{
+                            echo "<tr><td colspan='5'>No records found</td></tr>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+
+                        <span style="padding-right:2px;margin-top:0px;">
+                            <?php
+                            //Display pagging
+                            if(@$count > 0){
+								echo doPages(ROW_PER_PAGE, 'registrations.php', $searchstring, $countForPagenation);
+                            }
+                            ?>
+                        </span> 
+                    

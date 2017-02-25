@@ -1,0 +1,29 @@
+<script src="layouts/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../layouts/css/style.css" />
+<body>
+<?php include('header.php'); ?>
+<div class="container">
+		<div class="row">
+			<div class="span12">
+<h1 style="color:#ffffff;">Officer</h1><br />
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+<?php
+if(isset($msg) && ($msg != "")){
+	echo $msg;
+}
+?>
+<form action="officer.php" method="post">
+	<label for="First Name" class="control-label">First Name: </label>
+	<input type="text" class="form-control" name="fname" id="fname" value="" required><br>
+	<label for="Conference Title En" class="control-label">Last Name: </label><input type="text" class="form-control" name="lname" id="lname" value="" required><br>	
+	<label for="Phone" class="control-label">Phone: </label>
+	<input type="text" class="form-control" name="phone" id="phone" value="" required><br>
+	<label for="Email" class="control-label">Email: </label>
+	<input type="email" class="form-control" name="email" id="email" value="" required><br>
+	<input type="hidden" name="action" id="action" value="addOff">
+	<input type="submit" name="submitbtn" id="submitbtn" value="Submit">
+</form>
+</div></div></div>
+<?php include('botom.php'); ?>
+</body>
