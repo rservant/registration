@@ -1,0 +1,64 @@
+ <script src="layouts/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../layouts/css/style.css" />
+<body>
+<?php include('header.php'); ?>
+<div class="container">
+		<div class="row">
+			<div class="span12">
+<h1 style="color:#ffffff;">CONFERENCE</h1><br />
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+<?php
+if(isset($msg) && ($msg != "")){
+	echo $msg;
+}
+?>
+<form action="conf_form.php" method="post">
+	<label for="Conference Category" class="control-label">Conference Category: </label>
+	<select name="conference_category" class="form-control" required>
+		<option value="fall">fall</option>
+		<option value="spring">spring</option>
+	</select>
+	<br>
+	<label for="Conference Title En" class="control-label">Conference Title En: </label><input type="text" class="form-control" name="title_en" id="title_en" value="" required><br>
+	<label for="Conference Title Fr" class="control-label">Conference Title Fr: </label><input type="text" class="form-control" name="title_fr" id="title_fr" value="" required><br>
+	<label for="Conference Theme En" class="control-label">Conference Theme En: </label><input type="text" class="form-control" name="theme_en" id="theme_en" value="" required><br>
+	<label for="Conference Theme Fr" class="control-label">Conference Theme Fr: </label><input type="text" class="form-control" name="theme_fr" id="theme_fr" value="" required><br>
+	<label for="Conference Start Dt" class="control-label">Conference Start Dt: </label><input type="text" class="form-control" name="c_start" id="c_start" value="" required><br>
+	<label for="Conference End Dt" class="control-label">Conference End Dt: </label><input type="text" class="form-control" name="c_end" id="c_end" value="" required><br>
+	<label for="Conference Website Link" class="control-label">Conference Website Link: </label><input type="url" class="form-control" name="c_website_link" id="c_website_link" value="" required placeholder="http://www.toastmasters.org"><br>
+	<label for="Contact Phone No" class="control-label">Contact Phone No: </label><input type="text" class="form-control" name="c_ph" id="c_ph" value="" required><br>
+	<label for="Contact Email" class="control-label">Contact Email: </label><input type="email" class="form-control" name="c_email" id="c_email" value="" required><br>
+	<input type="hidden" name="action" id="action" value="addConf">
+	<input type="submit" name="submitbtn" id="submitbtn" value="Submit">
+</form>
+</div></div></div>
+<link rel="stylesheet" href="layouts/css/jquery-ui.css">
+<script src="layouts/js/jquery-ui.js"></script>
+<script>
+$(function() {
+	$( "#c_start" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		dateFormat: 'yy-mm-dd',
+		numberOfMonths: 1,
+		onClose: function( selectedDate ) {
+			$( "#c_end" ).datepicker( "option", "minDate", selectedDate );
+			contract_no_prepare();
+			
+		}
+	});
+	$( "#c_end" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		dateFormat: 'yy-mm-dd',
+		numberOfMonths: 1,
+		onClose: function( selectedDate ) {
+			$( "#c_start" ).datepicker( "option", "maxDate", selectedDate );
+			contract_no_prepare();
+		}
+	});	
+});
+</script>
+<?php include('botom.php'); ?>
+</body>

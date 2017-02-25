@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../layouts/css/style.css" />
+<body>
+<?php include('header.php'); ?>
+<div class="container">
+		<div class="row">
+			<div class="span12">
+<h1 style="color:#ffffff;">CLUBS</h1><br/>
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+<?php
+if(isset($msg) && ($msg != "")){
+	echo $msg;
+}
+?>
+<form action="clubs_form.php" method="post">
+	<label for="Club Name" class="control-label">Club Name:</label> <input type="text" class="form-control" name="cname" id="cname" value="" required><br>
+	<label for="Club Name" class="control-label">Club Number:</label> <input type="text" class="form-control" name="cnumber" id="cnumber" value="" required><br>
+	<label for="Club Area" class="control-label">Area:</label> <input type="text" class="form-control" name="carea" id="carea" value="" required><br>
+	<label for="Club Division" class="control-label">Division:</label> <input type="text" class="form-control" name="cdivision" id="cdivision" value="" required><br>
+	<input type="hidden" name="action" class="form-control" id="action" value="addClub">
+	<input type="submit" name="submitbtn" class="form-control" id="submitbtn" value="Submit">
+</form>
+</div></div></div>
+<?php include('botom.php'); ?>
+</body>

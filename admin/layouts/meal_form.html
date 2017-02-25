@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../layouts/css/style.css" />
+<body>
+<?php include('header.php'); ?>
+<div class="container">
+		<div class="row">
+			<div class="span12">
+<h1 style="color:#ffffff;">MEALS</h1><br/>
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+<?php
+if(isset($msg) && ($msg != "")){
+	echo $msg;
+}
+?>
+<form action="meals_form.php" method="post">
+	<label for="Select Conference" class="control-label">Select Conference:</label> <select name="conf_id" class="form-control" id="conf_id">
+						<?php
+						foreach($confData as $data){
+							echo "<option value='" . $data['Conference_Identifier'] . "'>" . $data['Conference_Title_EN'] . "</option>";
+						}
+						?>
+						</select><br>	
+	<label for="Meal Category" class="control-label">Meal Category:</label> 
+	<select name="meal_cat" class="form-control" id="meal_cat">
+		<?php
+		foreach($aMealCategory as $key=>$value){
+			echo "<option value='" . $key . "'>" . $value . "</option>";
+		}
+		?>
+	</select><br>	
+	<label for="Meal Item" class="control-label">Meal Item:</label> <input type="text" class="form-control" name="meal_item" id="meal_item" value="" required><br>
+	<!--<label for="Meal Price" class="control-label">Meal Price:</label> <input type="text" class="form-control" name="meal_price" id="meal_price" value="" required><br>-->
+	<label for="Meal Description EN" class="control-label">Meal Description EN:</label> <input type="text" class="form-control" name="meal_desc_en" id="meal_desc_en" value="" required><br>
+	<label for="Meal_Description_FR" class="control-label">Meal_Description_FR:</label> <input type="text" class="form-control" name="meal_desc_fr" id="meal_desc_fr" value="" required><br>
+	<label for="Meal_Max_Quantity" class="control-label">Meal_Max_Quantity:</label> <input type="text" class="form-control" name="meal_max_quan" id="meal_max_quan" value="" required><br>
+	<input type="hidden" name="action" class="form-control" id="action" value="addMeal">
+	<input type="submit" name="submitbtn" class="form-control" id="submitbtn" value="Submit">
+</form>
+</div></div></div>
+<?php include('botom.php'); ?>
+</body>

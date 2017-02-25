@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../layouts/css/style.css" />
+ <script src="layouts/js/jquery.min.js"></script>
+<body>
+<?php include('header.php'); ?>
+<div class="container">
+		<div class="row">
+			<div class="span12">
+<h1 style="color:#ffffff;">PRODUCTS</h1><br />
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+<?php
+if(isset($msg) && ($msg != "")){
+	echo $msg;
+}
+?>
+<form action="prod_form.php" method="post">
+	<label for="Select Conference" class="control-label">Select Conference:</label> <select name="conf_id" class="form-control" id="conf_id">
+		<?php
+		foreach($confData as $data){
+			echo "<option value='" . $data['Conference_Identifier'] . "'>" . $data['Conference_Title_EN'] . "</option>";
+		}
+		?>
+	</select><br>
+	<label for="Product Title En" class="control-label">Product Title En: </label><input type="text" class="form-control" name="title_en" id="title_en" value="" required><br>
+	<label for="Product Title Fr" class="control-label">Product Title Fr: </label><input type="text" class="form-control" name="title_fr" id="title_fr" value="" required><br>
+	<!--<label for="Product Description" class="control-label">Product Description:</label> <br>-->
+<input type="hidden" name="prod_desc" class="form-control" id="prod_desc" value="empty">
+	<label for="Product Price" class="control-label">Product Price:</label> <input type="text" class="form-control" name="prod_price" id="prod_price" value="" required><br>
+	<label for="Product Start Dt" class="control-label">Product Start Dt: </label><input type="text" class="form-control" name="p_start" id="p_start" value="" required><br>
+	<label for="Product End Dt" class="control-label">Product End Dt: </label><input type="text" class="form-control" name="p_end" id="p_end" value="" required><br>
+	<label for="Product Meals" class="control-label">Product Meals: </label>
+	<input type="radio" class="form-control" name="meals_display" id="meals_display_yes" value="yes" checked>Meals Provided
+	<input type="radio" class="form-control" name="meals_display" id="meals_display_no" value="no" > No Meals
+	<br>
+	<span id="meals_cat_checkboxes" style="display:none;">
+	<?php
+		foreach($aMealCategory as $key=>$value){
+			echo '<input type="checkbox" class="form-control" name="meals_cat[]" id="" value="' . $key . '">' . $value;
+		}
+		?>
+	</span>
+	<input type="hidden" name="action" class="form-control" id="action" value="addProd">
+	<input type="submit" name="submitbtn" class="form-control" id="submitbtn" value="Submit">
+</form>
+</div></div></div>
+<link rel="stylesheet" href="layouts/css/jquery-ui.css">
+<script src="layouts/js/jquery-ui.js"></script>
+<script>
+$(function() {
+	$( "#p_start" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		dateFormat: 'yy-mm-dd',
+		numberOfMonths: 1,
+		onClose: function( selectedDate ) {
+			$( "#p_end" ).datepicker( "option", "minDate", selectedDate );
+			contract_no_prepare();
+			
+		}
+	});
+	$( "#p_end" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		dateFormat: 'yy-mm-dd',
+		numberOfMonths: 1,
+		onClose: function( selectedDate ) {
+			$( "#p_start" ).datepicker( "option", "maxDate", selectedDate );
+			contract_no_prepare();
+		}
+	});	
+	$('input[type=radio][name=meals_display]').change(function() {
+        if (this.value == 'yes') {
+			$("#meals_cat_checkboxes").show();
+        }
+        else if (this.value == 'no') {
+			$("#meals_cat_checkboxes").hide();
+			$('input:checkbox').removeAttr('checked');
+        }
+    });
+	$("#meals_cat_checkboxes").show();
+});
+</script>
+<?php include('botom.php'); ?>
+</body>

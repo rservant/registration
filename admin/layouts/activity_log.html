@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Toastmasters</title>
+    <meta charset="utf-8">
+    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:#4C5D67;">
+    <div class="container">
+    		<div class="row">
+    			<h3 style="color:#ffffff;">Toastmasters Conference View</h3>
+    		</div>
+<div align="right"><iframe src="menus.php" width="100%" frameborder="0" scrolling="no" height="37"></iframe></div>
+			<div class="row">
+				<!--<p>
+					<a href="create.php" class="btn btn-success">Create</a>
+				</p>-->
+				<form action="activity_log.php" method="POST" class="dash-form">
+						<?php 
+						if($logininfo['user_role'] == "admin"){
+						?>
+						<div class="row">
+							<section class="col-4">
+								<label class="label">Select  Officer</label>
+								<label class="input">
+									<?php echo getOfficerIds($user_id);?>
+								</label>
+								<i></i>
+							</section>
+						</div>
+						<?php
+						}
+						?>
+				 </form>
+		              <table class="table table-striped table-bordered" style="background-color: #fff;">
+                            <tbody>
+                                <tr class="blueh">
+                                    <th style="text-align:center;">Item</th>
+                                    <?php
+                                    if($logininfo['user_role'] == "admin"){
+                                    ?>
+                                    <th style="text-align:center;">User Type</th>
+                                    <?php	
+                                    }
+                                    ?>
+                                    <th style="text-align:center;">User Name</th>
+                                    <th style="text-align:center;">IpAddress</th>
+                                    <th style="text-align:center;">Module</th>
+                                    <th style="text-align:center;">Action</th>
+                                    <th style="text-align:center;">Date</th>
+                                </tr>
+                                <?php if($count > 0){
+                                $iSno = (($page-1) * ROW_PER_PAGE) + 1;
+                                foreach($logList as $list){
+                                //$user_name = getUserNamebyId($list['user_type'],$list['user_id']);
+								$user_name = @$userNames[$list['user_id']];
+                                if($list['user_type'] == 2){
+                                $userType = "Guest";
+                                }else{
+                                //$userType = ($list['user_type'] == 1) ? "Admin" : "Customer";
+								$userType = $list['user_type'];
+                                }
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $iSno;?></td>
+                                    <?php
+                                    if($logininfo['user_role'] == "admin"){
+                                    ?>
+                                    <td><?php echo $userType;?></td>
+                                    <?php	
+                                    }
+                                    ?>
+                                    <td><?php echo $user_name;?></td>
+                                    <td><?php echo $list['ipaddress'];?></td>
+                                    <td><?php echo $list['module'];?></td>
+                                    <td><?php echo $list['action'];?></td>
+                                    <td><?php echo $list['create_datetime'];//echo dateformat($list['create_datetime'],"DATE");?></td>
+                                </tr>
+                                <?php
+                                $iSno++;
+                                } 
+                                }else{
+                                ?>
+                                <tr><td colspan='7'>No records found</td></tr>
+                                <?php
+                                }?>
+                            </tbody>
+                        </table>
+                        <span>
+                            <?php
+                            //Display pagging
+                            if($count > 0){
+                            echo doPages(ROW_PER_PAGE, 'activity_log.php', $searchstring, $count);
+                            }
+                            ?>
+                        </span>
+    	</div>
+    </div> <!-- /container -->
+  </body>
+</html>
